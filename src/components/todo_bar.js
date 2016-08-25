@@ -27,10 +27,16 @@ class TodoBar extends Component {
         <form onSubmit={this.onFormSubmit.bind(this)} className="input-group">
           <input
             className="form-control"
+            placeholder="What do you need to do today?"
             value={this.state.item}
             onChange={this.onInputChange.bind(this)} />
           <span className="input-group-btn">
-            <button type="submit" className="btn btn-primary">Add</button>
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={!this.state.item}>
+              Add
+            </button>
           </span>
         </form>
       </div>
