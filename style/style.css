@@ -1,3 +1,11 @@
 .todobar {
   margin: 5px 0px;
 }
+
+.fa-trash-o {
+  cursor: pointer;
+}
+
+.list-group-item:hover {
+  background-color: #eee;
+}

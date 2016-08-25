@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { deleteItem } from '../actions/index';
 
 class TodoList extends Component {
   constructor(props) {
     super(props);
   }
 
+  onClick(i) {
+    this.props.deleteItem(i);
+  }
+
   renderItem(item, i) {
     return (
-      <li key={i} className="list-group-item">{item}</li>
+      <li key={i} className="list-group-item">
+        {item}
+        <span
+          className="fa fa-trash-o fa-pull-right"
+          onClick={this.onClick.bind(this, i)} >
+        </span>
+      </li>
     );
   }
 
@@ -25,4 +36,4 @@ function mapStateToProps(state) {
   return { items: state.items };
 }
 
-export default connect(mapStateToProps)(TodoList);
+export default connect(mapStateToProps, { deleteItem })(TodoList);
