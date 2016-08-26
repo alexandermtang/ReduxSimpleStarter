@@ -26,7 +26,8 @@ class TodoList extends Component {
           return (
             <TodoListItem
               key={index}
-              item={item}
+              item={item.task}
+              completed={item.completed}
               index={index}
               editing={this.state.editItem === index}
               startEdit={(index) => this.setEditItem(index)}

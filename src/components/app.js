@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoBar from './todo_bar';
 import TodoList from './todo_list';
+import TodoFooter from './todo_footer';
 
 export default class App extends Component {
   render() {
@@ -8,6 +9,7 @@ export default class App extends Component {
       <div className="col-md-6">
         <TodoBar />
         <TodoList />
+        <TodoFooter />
       </div>
     );
   }

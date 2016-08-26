@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteItem, editItem } from '../actions/index';
+import { deleteItem, editItem, toggleItem } from '../actions/index';
 
 class TodoListItem extends Component {
   startEdit(index) {
@@ -26,23 +26,39 @@ class TodoListItem extends Component {
     this.props.editItem(event.target.value, index);
   }
 
+  toggleItemComplete(index) {
+    this.props.toggleItem(index);
+  }
+
   render() {
-    const { item, index, editing } = this.props
+    const { item, index, editing, completed } = this.props
           , divStyle = {}
-          , inputStyle = {};
+          , inputStyle = {}
+          , taskStyle = {};
 
     if (editing) {
       divStyle.display = "none";
     } else {
       inputStyle.display = "none";
     }
+    
+    if (completed) {
+      taskStyle.textDecoration = "line-through";
+    }
 
     return (
       <li className="list-group-item">
         <div
+          // className="form-check"
           onDoubleClick={() => this.startEdit(index)}
           style={divStyle}>
-          {item}
+          <label className="form-check-label" style={taskStyle}>
+            <input
+              className="form-check-input"
+              type="checkbox"
+              onChange={() => this.toggleItemComplete(index)} />
+            {item}
+          </label>
           <span
             className="fa fa-trash-o fa-pull-right"
             onClick={() => this.onDelete(index)}>
@@ -62,4 +78,4 @@ class TodoListItem extends Component {
   }
 }
 
-export default connect(null, { deleteItem, editItem })(TodoListItem);
+export default connect(null, { deleteItem, editItem, toggleItem })(TodoListItem);
