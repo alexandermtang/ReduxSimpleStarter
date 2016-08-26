@@ -6,7 +6,7 @@ class TodoBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { item: '' };
+    this.state = { item: "" };
   }
 
   onInputChange(event) {
@@ -17,7 +17,7 @@ class TodoBar extends Component {
     event.preventDefault();
 
     this.props.addItem(this.state.item);
-    this.setState({ item: '' });
+    this.setState({ item: "" });
   }
 
   render() {

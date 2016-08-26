@@ -15,6 +15,11 @@
   display: block;
 }
 
+.clear-completed:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 /*.list-group-item:hover {
   background-color: #eee;
 }*/

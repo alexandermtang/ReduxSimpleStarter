@@ -1,8 +1,9 @@
-export const ADD_ITEM    = 'ADD_ITEM';
+export const ADD_ITEM = 'ADD_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
-export const EDIT_ITEM   = 'EDIT_ITEM';
+export const EDIT_ITEM = 'EDIT_ITEM';
 export const TOGGLE_ITEM = 'TOGGLE_ITEM';
-export const TOGGLE_ALL  = 'TOGGLE_ALL';
+export const MARK_ALL = 'MARK_ALL';
+export const CLEAR_COMPLETED  = 'CLEAR_COMPLETED';
 
 export function addItem(task) {
   return {
@@ -38,9 +39,15 @@ export function toggleItem(index) {
   };
 }
 
-export function toggleAll(completedAll) {
+export function markAll(completed) {
   return {
-    type: TOGGLE_ALL,
-    payload: completedAll
+    type: MARK_ALL,
+    payload: completed
+  };
+}
+
+export function clearCompleted() {
+  return {
+    type: CLEAR_COMPLETED
   }
 }

@@ -1,4 +1,5 @@
-import { ADD_ITEM, DELETE_ITEM, EDIT_ITEM, TOGGLE_ITEM, TOGGLE_ALL } from '../actions/index';
+import { ADD_ITEM, DELETE_ITEM, EDIT_ITEM,
+         TOGGLE_ITEM, MARK_ALL, CLEAR_COMPLETED } from '../actions/index';
 
 export default function(state = [], action) {
   let newState = [ ...state ];
@@ -20,15 +21,18 @@ export default function(state = [], action) {
     case TOGGLE_ITEM:
       index = action.payload;
       newState[index].completed = !newState[index].completed;
-      // console.log(index, newState[index].completed);
       return newState;
-    case TOGGLE_ALL:
-      console.log("changeing all states to", action.payload);
+    case MARK_ALL:
+      const completed = action.payload;
       newState.map((item) => {
-        item.completed = action.payload;
+        item.completed = completed;
         return item;
       });
       return newState;
+    case CLEAR_COMPLETED:
+      return newState.filter((item) => {
+        return !item.completed;
+      });
     default:
       return state;
   }

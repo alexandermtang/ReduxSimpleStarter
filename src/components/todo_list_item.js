@@ -9,7 +9,7 @@ class TodoListItem extends Component {
 
   stopEdit(item, index) {
     this.props.stopEdit(index);
-    if (item === '') this.props.deleteItem(index);
+    if (item === "") this.props.deleteItem(index);
   }
 
   onKeyDown(item, index, event) {
@@ -49,7 +49,6 @@ class TodoListItem extends Component {
     return (
       <li className="list-group-item">
         <div
-          // className="form-check"
           onDoubleClick={() => this.startEdit(index)}
           style={divStyle}>
           <label className="form-check-label" style={taskStyle}>

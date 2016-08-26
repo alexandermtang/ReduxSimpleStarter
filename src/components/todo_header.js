@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toggleAll } from '../actions/index';
+import { markAll } from '../actions/index';
 
 class TodoHeader extends Component {
   constructor(props) {
     super(props);
-    this.state = { completedAll: false };
   }
 
-  toggleAll() {
-    this.props.toggleAll(!this.state.completedAll);
-    this.setState({ completedAll: !this.state.completedAll });
+  toggleAll(completedAll) {
+    if (!completedAll) {
+      this.props.markAll(true);
+    } else {
+      this.props.markAll(false);
+    }
   }
 
   render() {
     const headerStyle = {};
+    const completedAll = this.props.items.reduce((completedAll, item) => {
+      return completedAll && item.completed;
+    }, true);
 
-    if (this.props.numItems === 0) {
+    if (this.props.items.length === 0) {
       headerStyle.display = "none";
     }
 
@@ -28,7 +33,8 @@ class TodoHeader extends Component {
           <input
             className="form-check-input"
             type="checkbox"
-            onChange={() => this.toggleAll()} />
+            checked={completedAll ? "checked" : ""}
+            onChange={() => this.toggleAll(completedAll)} />
           Mark all as completed
         </label>
       </div>
@@ -37,7 +43,7 @@ class TodoHeader extends Component {
 }
 
 function mapStateToProps(state) {
-  return { numItems: state.items.length };
+  return { items: state.items };
 }
 
-export default connect(mapStateToProps, { toggleAll })(TodoHeader);
+export default connect(mapStateToProps, { markAll })(TodoHeader);
