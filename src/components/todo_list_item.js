@@ -41,7 +41,7 @@ class TodoListItem extends Component {
     } else {
       inputStyle.display = "none";
     }
-    
+
     if (completed) {
       taskStyle.textDecoration = "line-through";
     }
@@ -56,6 +56,7 @@ class TodoListItem extends Component {
             <input
               className="form-check-input"
               type="checkbox"
+              checked={completed ? "checked" : ""}
               onChange={() => this.toggleItemComplete(index)} />
             {item}
           </label>

@@ -1,7 +1,8 @@
-export const ADD_ITEM = 'ADD_ITEM';
+export const ADD_ITEM    = 'ADD_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
-export const EDIT_ITEM = 'EDIT_ITEM';
+export const EDIT_ITEM   = 'EDIT_ITEM';
 export const TOGGLE_ITEM = 'TOGGLE_ITEM';
+export const TOGGLE_ALL  = 'TOGGLE_ALL';
 
 export function addItem(task) {
   return {
@@ -35,4 +36,11 @@ export function toggleItem(index) {
     type: TOGGLE_ITEM,
     payload: index
   };
+}
+
+export function toggleAll(completedAll) {
+  return {
+    type: TOGGLE_ALL,
+    payload: completedAll
+  }
 }

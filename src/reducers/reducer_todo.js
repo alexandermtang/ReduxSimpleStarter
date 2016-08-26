@@ -1,4 +1,4 @@
-import { ADD_ITEM, DELETE_ITEM, EDIT_ITEM, TOGGLE_ITEM } from '../actions/index';
+import { ADD_ITEM, DELETE_ITEM, EDIT_ITEM, TOGGLE_ITEM, TOGGLE_ALL } from '../actions/index';
 
 export default function(state = [], action) {
   let newState = [ ...state ];
@@ -21,6 +21,13 @@ export default function(state = [], action) {
       index = action.payload;
       newState[index].completed = !newState[index].completed;
       // console.log(index, newState[index].completed);
+      return newState;
+    case TOGGLE_ALL:
+      console.log("changeing all states to", action.payload);
+      newState.map((item) => {
+        item.completed = action.payload;
+        return item;
+      });
       return newState;
     default:
       return state;
