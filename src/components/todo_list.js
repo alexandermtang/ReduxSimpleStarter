@@ -1,32 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteItem } from '../actions/index';
+import TodoListItem from './todo_list_item';
 
 class TodoList extends Component {
   constructor(props) {
     super(props);
+
+    this.state = { editItem: null };
   }
 
-  onClick(i) {
-    this.props.deleteItem(i);
+  setEditItem(index) {
+    this.setState({ editItem: index });
   }
 
-  renderItem(item, i) {
-    return (
-      <li key={i} className="list-group-item">
-        {item}
-        <span
-          className="fa fa-trash-o fa-pull-right"
-          onClick={this.onClick.bind(this, i)} >
-        </span>
-      </li>
-    );
+  unsetEditItem(index) {
+    if (this.state.editItem === index) {
+      this.setState({ editItem: null });
+    }
   }
 
   render() {
     return (
       <ul className="list-group">
-        {this.props.items.map(this.renderItem.bind(this))}
+        {this.props.items.map((item, index) => {
+          return (
+            <TodoListItem
+              key={index}
+              item={item}
+              index={index}
+              editing={this.state.editItem === index}
+              startEdit={(index) => this.setEditItem(index)}
+              stopEdit={(index) => this.unsetEditItem(index)} />
+          );
+        })}
       </ul>
     );
   }
@@ -36,4 +42,4 @@ function mapStateToProps(state) {
   return { items: state.items };
 }
 
-export default connect(mapStateToProps, { deleteItem })(TodoList);
+export default connect(mapStateToProps)(TodoList);

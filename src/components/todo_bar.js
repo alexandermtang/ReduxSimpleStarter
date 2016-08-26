@@ -24,12 +24,12 @@ class TodoBar extends Component {
     return (
       <div className="todobar">
         <h3>Todo List</h3>
-        <form onSubmit={this.onFormSubmit.bind(this)} className="input-group">
+        <form onSubmit={(event) => this.onFormSubmit(event)} className="input-group">
           <input
             className="form-control"
             placeholder="What do you need to do today?"
             value={this.state.item}
-            onChange={this.onInputChange.bind(this)} />
+            onChange={(event) => this.onInputChange(event)} />
           <span className="input-group-btn">
             <button
               type="submit"
