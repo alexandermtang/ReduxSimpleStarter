@@ -1,11 +1,20 @@
 .todobar {
-  margin: 5px 0px;
+  margin: 10px 0px;
 }
 
-.fa-trash-o {
+.todobar h3 {
+  text-align: center;
+}
+
+.fa.fa-trash-o {
   cursor: pointer;
+  display: none;
 }
 
-.list-group-item:hover {
-  background-color: #eee;
+.list-group-item:hover .fa.fa-trash-o {
+  display: block;
 }
+
+/*.list-group-item:hover {
+  background-color: #eee;
+}*/
