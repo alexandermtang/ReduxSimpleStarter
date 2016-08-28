@@ -1,3 +1,5 @@
+import { v4 } from 'node-uuid';
+
 export const ADD_ITEM = 'ADD_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const EDIT_ITEM = 'EDIT_ITEM';
@@ -8,41 +10,40 @@ export const CLEAR_COMPLETED  = 'CLEAR_COMPLETED';
 export function addItem(task) {
   return {
     type: ADD_ITEM,
-    payload: {
+    item: {
+      id: v4(),
       task: task,
       completed: false
     }
   };
 }
 
-export function deleteItem(index) {
+export function deleteItem(id) {
   return {
     type: DELETE_ITEM,
-    payload: index
+    id: id
   };
 }
 
-export function editItem(task, index) {
+export function editItem(newTask, id) {
   return {
     type: EDIT_ITEM,
-    payload: {
-      newTask: task,
-      index: index
-    }
+    id: id,
+    newTask: newTask
   };
 }
 
-export function toggleItem(index) {
+export function toggleItem(id) {
   return {
     type: TOGGLE_ITEM,
-    payload: index
+    id: id
   };
 }
 
 export function markAll(completed) {
   return {
     type: MARK_ALL,
-    payload: completed
+    completed: completed
   };
 }
 

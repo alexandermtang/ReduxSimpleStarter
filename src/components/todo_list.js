@@ -9,12 +9,12 @@ class TodoList extends Component {
     this.state = { editItem: null };
   }
 
-  setEditItem(index) {
-    this.setState({ editItem: index });
+  setEditItem(id) {
+    this.setState({ editItem: id });
   }
 
-  unsetEditItem(index) {
-    if (this.state.editItem === index) {
+  unsetEditItem(id) {
+    if (this.state.editItem === id) {
       this.setState({ editItem: null });
     }
   }
@@ -22,16 +22,14 @@ class TodoList extends Component {
   render() {
     return (
       <ul className="list-group">
-        {this.props.items.map((item, index) => {
+        {this.props.items.map((item, i) => {
           return (
             <TodoListItem
-              key={index}
-              item={item.task}
-              completed={item.completed}
-              index={index}
-              editing={this.state.editItem === index}
-              startEdit={(index) => this.setEditItem(index)}
-              stopEdit={(index) => this.unsetEditItem(index)} />
+              key={item.id}
+              { ...item }
+              editing={this.state.editItem === item.id}
+              startEdit={(id) => this.setEditItem(id)}
+              stopEdit={(id) => this.unsetEditItem(id)} />
           );
         })}
       </ul>

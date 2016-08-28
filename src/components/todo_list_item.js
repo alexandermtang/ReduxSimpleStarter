@@ -3,35 +3,35 @@ import { connect } from 'react-redux';
 import { deleteItem, editItem, toggleItem } from '../actions/index';
 
 class TodoListItem extends Component {
-  startEdit(index) {
-    this.props.startEdit(index);
+  startEdit(id) {
+    this.props.startEdit(id);
   }
 
-  stopEdit(item, index) {
-    this.props.stopEdit(index);
-    if (item === "") this.props.deleteItem(index);
+  stopEdit(task, id) {
+    this.props.stopEdit(id);
+    if (task === "") this.props.deleteItem(id);
   }
 
-  onKeyDown(item, index, event) {
+  onKeyDown(task, id, event) {
     if (event.keyCode === 13) {
-      this.stopEdit(item, index);
+      this.stopEdit(task, id);
     }
   }
 
-  onDelete(index) {
-    this.props.deleteItem(index);
+  onDelete(id) {
+    this.props.deleteItem(id);
   }
 
-  onInputChange(index, event) {
-    this.props.editItem(event.target.value, index);
+  onInputChange(id, event) {
+    this.props.editItem(event.target.value, id);
   }
 
-  toggleItemComplete(index) {
-    this.props.toggleItem(index);
+  toggleItemComplete(id) {
+    this.props.toggleItem(id);
   }
 
   render() {
-    const { item, index, editing, completed } = this.props
+    const { id, task, completed, editing } = this.props
           , divStyle = {}
           , inputStyle = {}
           , taskStyle = {};
@@ -49,28 +49,28 @@ class TodoListItem extends Component {
     return (
       <li className="list-group-item">
         <div
-          onDoubleClick={() => this.startEdit(index)}
+          onDoubleClick={() => this.startEdit(id)}
           style={divStyle}>
           <label className="form-check-label" style={taskStyle}>
             <input
               className="form-check-input"
               type="checkbox"
               checked={completed ? "checked" : ""}
-              onChange={() => this.toggleItemComplete(index)} />
-            {item}
+              onChange={() => this.toggleItemComplete(id)} />
+            {task}
           </label>
           <span
             className="fa fa-trash-o fa-pull-right"
-            onClick={() => this.onDelete(index)}>
+            onClick={() => this.onDelete(id)}>
           </span>
         </div>
         <input
           className="form-control"
           ref={(ref) => { if (ref !== null) ref.focus(); }}
-          value={item}
-          onBlur={() => this.stopEdit(item, index)}
-          onKeyDown={(event) => this.onKeyDown(item, index, event)}
-          onChange={(event) => this.onInputChange(index, event)}
+          value={task}
+          onBlur={() => this.stopEdit(task, id)}
+          onKeyDown={(event) => this.onKeyDown(task, id, event)}
+          onChange={(event) => this.onInputChange(id, event)}
           style={inputStyle}
         />
       </li>
