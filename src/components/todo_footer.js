@@ -31,7 +31,7 @@ class TodoFooter extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return { items: state.items };
 }
 
