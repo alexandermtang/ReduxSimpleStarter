@@ -10,10 +10,12 @@ export const CLEAR_COMPLETED  = 'CLEAR_COMPLETED';
 export const addItem = (task) => {
   return {
     type: ADD_ITEM,
-    item: {
-      id: v4(),
-      task: task,
-      completed: false
+    payload: {
+      item: {
+        id: v4(),
+        task: task,
+        completed: false
+      }
     }
   };
 }
@@ -21,29 +23,37 @@ export const addItem = (task) => {
 export const deleteItem = (id) => {
   return {
     type: DELETE_ITEM,
-    id: id
+    payload: {
+      id: id
+    }
   };
 }
 
 export const editItem = (newTask, id) => {
   return {
     type: EDIT_ITEM,
-    id: id,
-    newTask: newTask
+    payload: {
+      id: id,
+      newTask: newTask
+    }
   };
 }
 
 export const toggleItem = (id) => {
   return {
     type: TOGGLE_ITEM,
-    id: id
+    payload: {
+      id: id
+    }
   };
 }
 
 export const markAll = (completed) => {
   return {
     type: MARK_ALL,
-    completed: completed
+    payload: {
+      completed: completed
+    }
   };
 }
 
